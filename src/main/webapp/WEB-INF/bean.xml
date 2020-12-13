@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:p="http://www.springframework.org/schema/p"  
+    xmlns:context="http://www.springframework.org/schema/context"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+http://www.springframework.org/schema/context  
+http://www.springframework.org/schema/context/spring-context-3.0.xsd">  
+    
+    <context:component-scan  base-package="com.controller" />
+      
+    
+<bean class="com.dao.EmployeeDAO" id="mydao">
+<property name="jdbctemp" ref="myjdbc"></property>
+</bean>
+    
+    
+    <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="ds">
+<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+<property name="url" value="jdbc:mysql://localhost:3306/test"></property>
+<property name="username" value="root"></property>
+<property name="password" value="root@1234567"></property>
+</bean>
+
+
+<bean class="org.springframework.jdbc.core.JdbcTemplate" id="myjdbc">
+<property name="dataSource" ref="ds"></property>
+</bean>
+
+
+ <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
+        <property name="prefix" value="/" />  
+        <property name="suffix" value=".jsp" />  
+    </bean>  
+    
+</beans> 
